@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bomholt.PetShop.Core.ApplicationService;
+using Bomholt.PetShop.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bomholt.PetShop.RestAPI.Controllers
@@ -19,9 +20,9 @@ namespace Bomholt.PetShop.RestAPI.Controllers
 
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Pet> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _petService.GetAllPets();
         }
 
         // GET api/values/5
@@ -45,8 +46,9 @@ namespace Bomholt.PetShop.RestAPI.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            return _petService.DeletePetById(id);
         }
     }
 }
