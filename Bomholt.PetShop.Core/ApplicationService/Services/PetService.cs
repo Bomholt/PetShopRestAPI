@@ -35,6 +35,11 @@ namespace Bomholt.PetShop.Core.ApplicationService.Services
             return _PetRepo.GetAllPets().ToList();
         }
 
+        public Pet GetById(int v)
+        {
+            return _PetRepo.GetById(v);
+        }
+
         public List<Pet> SearchPetsByType(string searchType)
         {
             IEnumerable <Pet> AllPets = _PetRepo.GetAllPets();

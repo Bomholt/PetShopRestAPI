@@ -20,6 +20,7 @@ namespace Bomholt.PetShop.RestAPI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            PetRepository.InitDB();
         }
 
         public IConfiguration Configuration { get; }

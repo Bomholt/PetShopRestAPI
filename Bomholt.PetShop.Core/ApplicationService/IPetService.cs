@@ -9,6 +9,7 @@ namespace Bomholt.PetShop.Core.ApplicationService
     {
         //Read
         List<Pet> GetAllPets();
+        Pet GetById(int v);
         bool DeletePetById(int v);
         bool CreateNewPet(Pet newPet);
         bool UpdatePet(Pet updatedPet);

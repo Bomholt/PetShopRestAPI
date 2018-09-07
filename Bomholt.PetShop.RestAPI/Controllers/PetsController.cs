@@ -27,21 +27,24 @@ namespace Bomholt.PetShop.RestAPI.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Pet Get(int id)
         {
-            return "value";
+            return _petService.GetById(id);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Pet value)
         {
+            bool success = _petService.CreateNewPet(value);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Pet value)
         {
+            value.ID = id;
+            bool success = _petService.UpdatePet(value);
         }
 
         // DELETE api/values/5
