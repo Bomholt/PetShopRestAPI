@@ -21,6 +21,7 @@ namespace Bomholt.PetShop.RestAPI
         {
             Configuration = configuration;
             PetRepository.InitDB();
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -31,6 +32,8 @@ namespace Bomholt.PetShop.RestAPI
             services.AddMvc();
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPetService, PetService>();
+            services.AddScoped<IOwnerRepository, OwnerRepository>();
+            services.AddScoped<IOwnerService, OwnerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

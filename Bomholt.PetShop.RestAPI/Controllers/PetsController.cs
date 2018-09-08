@@ -18,28 +18,28 @@ namespace Bomholt.PetShop.RestAPI.Controllers
             _petService = petService;
         }
 
-        // GET api/values
+        // GET api/pets
         [HttpGet]
         public IEnumerable<Pet> Get()
         {
             return _petService.GetAllPets();
         }
 
-        // GET api/values/5
+        // GET api/pets/5
         [HttpGet("{id}")]
         public Pet Get(int id)
         {
             return _petService.GetById(id);
         }
 
-        // POST api/values
+        // POST api/pets
         [HttpPost]
         public void Post([FromBody]Pet value)
         {
             bool success = _petService.CreateNewPet(value);
         }
 
-        // PUT api/values/5
+        // PUT api/pets/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]Pet value)
         {
@@ -47,7 +47,7 @@ namespace Bomholt.PetShop.RestAPI.Controllers
             bool success = _petService.UpdatePet(value);
         }
 
-        // DELETE api/values/5
+        // DELETE api/pets/5
         [HttpDelete("{id}")]
         public bool Delete(int id)
         {
