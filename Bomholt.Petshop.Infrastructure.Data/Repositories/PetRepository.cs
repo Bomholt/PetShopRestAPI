@@ -15,10 +15,10 @@ namespace Bomholt.Petshop.Infrastructure.Data.Repositories
         public static void InitDB()
         {
             var temp = _pets.ToList();
-            temp.Add(new Pet() { Name = "Iben", Type = "Cat", Color = "Black", Birthdate = new DateTime(2011, 05, 15), PreviousOwner = "Hans Hansen", Price = 100, ID = id++ });
-            temp.Add(new Pet() { Name = "Lars", Type = "Pecker", Color = "Pink", Birthdate = new DateTime(2017, 11, 22), PreviousOwner = "Birthe Hansen", Price = 1000, ID = id++ });
-            temp.Add(new Pet() { Name = "Ralf", Type = "Gyraf", Color = "White", Birthdate = new DateTime(2015, 01, 09), PreviousOwner = "Hans Ipsen", Price = 150.5, ID = id++ });
-            temp.Add(new Pet() { Name = "Garfield", Type = "Dolphin", Color = "Orange", Birthdate = new DateTime(2018, 09, 05), PreviousOwner = "Jens Jensen", Price = 1559.95, ID = id++ });
+            temp.Add(new Pet() { Owner = new Owner() {ID = 1 }, Name = "Iben", Type = "Cat", Color = "Black", Birthdate = new DateTime(2011, 05, 15), PreviousOwner = "Hans Hansen", Price = 100, ID = id++ });
+            temp.Add(new Pet() { Owner = new Owner() { ID = 1 }, Name = "Lars", Type = "Pecker", Color = "Pink", Birthdate = new DateTime(2017, 11, 22), PreviousOwner = "Birthe Hansen", Price = 1000, ID = id++ });
+            temp.Add(new Pet() { Owner = new Owner() { ID = 2 }, Name = "Ralf", Type = "Gyraf", Color = "White", Birthdate = new DateTime(2015, 01, 09), PreviousOwner = "Hans Ipsen", Price = 150.5, ID = id++ });
+            temp.Add(new Pet() { Owner = new Owner() { ID = 2 }, Name = "Garfield", Type = "Dolphin", Color = "Orange", Birthdate = new DateTime(2018, 09, 05), PreviousOwner = "Jens Jensen", Price = 1559.95, ID = id++ });
             _pets = temp;
         }
 
