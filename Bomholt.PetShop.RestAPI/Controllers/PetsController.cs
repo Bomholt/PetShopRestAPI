@@ -30,6 +30,7 @@ namespace Bomholt.PetShop.RestAPI.Controllers
             {
                 return BadRequest("Id must be lager than zero!");
             }
+            //Pet PetFound = _petService.GetById(id);
             Pet PetFound = _petService.GetById(id);
             if (PetFound == null)
             {

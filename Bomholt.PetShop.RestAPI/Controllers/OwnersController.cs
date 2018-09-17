@@ -29,9 +29,10 @@ namespace Bomholt.PetShop.RestAPI.Controllers
         {
             if (id < 1)
             {
-                return BadRequest("Id must be lager than zero!");
+                return BadRequest("Id must be larger than zero!");
             }
-            Owner OwnerFound = _ownerService.GetById(id);
+            //Owner OwnerFound = _ownerService.GetById(id);
+            Owner OwnerFound = _ownerService.GetByIdWithPets(id);
             if (OwnerFound == null)
             {
                 return NotFound($"No owner with id {id} found!");

@@ -10,6 +10,6 @@ namespace Bomholt.PetShop.Core.Entities
         public string Name { get; set; }
         public string Address{ get; set; }
         public string Email { get; set; }
-        public List<int> Pets { get; set; }
+        public List<Pet> Pets { get; set; }
     }
 }
