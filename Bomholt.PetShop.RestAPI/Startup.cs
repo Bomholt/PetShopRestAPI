@@ -23,7 +23,9 @@ namespace Bomholt.PetShop.RestAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PetShopContext>(opt => opt.UseInMemoryDatabase("PetBase"));
+            //services.AddDbContext<PetShopContext>(opt => opt.UseInMemoryDatabase("PetBase"));
+            services.AddDbContext<PetShopContext>(opt => opt.UseSqlite("Data Source = Bomholt.PetShop.DB"));
+            
             services.AddMvc();
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPetService, PetService>();
@@ -37,6 +39,12 @@ namespace Bomholt.PetShop.RestAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                // Initialize the database
+                //using (var scope = app.ApplicationServices.CreateScope())
+                //{
+                //    var dbContext = scope.ServiceProvider.GetService<PetShopContext>();
+                //    dbContext.Database.EnsureCreated();
+                //}
             }
 
             app.UseMvc();

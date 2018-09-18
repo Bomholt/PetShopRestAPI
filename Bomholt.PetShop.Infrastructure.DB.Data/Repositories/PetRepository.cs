@@ -27,7 +27,7 @@ namespace Bomholt.PetShop.Infrastructure.DB.Data.Repositories
 
         public IEnumerable<Pet> GetAllPets()
         {
-            throw new NotImplementedException();
+            return _context.Pets;
         }
 
         public Pet GetById(int v)
