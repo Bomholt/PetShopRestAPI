@@ -44,10 +44,10 @@ namespace Bomholt.PetShop.RestAPI.Controllers
         [HttpPost]
         public ActionResult Post([FromBody]Owner value)
         {
-            bool success = _ownerService.CreateNew(value);
-            if (success)
+            Owner success = _ownerService.CreateNew(value);
+            if (success!= null)
             {
-                return Ok($"Owner {value} was successfully created");
+                return Ok($"Owner {success} was successfully created");
             }
             else
             {

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Bomholt.Petshop.Infrastructure.Data.Repositories;
-using Bomholt.PetShop.Core.ApplicationService;
+﻿using Bomholt.PetShop.Core.ApplicationService;
 using Bomholt.PetShop.Core.ApplicationService.Services;
 using Bomholt.PetShop.Core.DomainService;
+using Bomholt.PetShop.Infrastructure.DB.Data;
+using Bomholt.PetShop.Infrastructure.DB.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bomholt.PetShop.RestAPI
 {
@@ -19,9 +15,7 @@ namespace Bomholt.PetShop.RestAPI
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
-            PetRepository.InitDB();
-            
+            Configuration = configuration;            
         }
 
         public IConfiguration Configuration { get; }
@@ -29,6 +23,7 @@ namespace Bomholt.PetShop.RestAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<PetShopContext>(opt => opt.UseInMemoryDatabase("PetBase"));
             services.AddMvc();
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPetService, PetService>();

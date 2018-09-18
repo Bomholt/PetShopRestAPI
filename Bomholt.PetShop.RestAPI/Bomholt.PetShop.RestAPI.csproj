@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
   </ItemGroup>
 
@@ -20,7 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Bomholt.PetShop.Core.Entities\Bomholt.PetShop.Core.Entities.csproj" />
     <ProjectReference Include="..\Bomholt.PetShop.Core\Bomholt.PetShop.Core.csproj" />
-    <ProjectReference Include="..\Bomholt.Petshop.Infrastructure.Data\Bomholt.Petshop.Infrastructure.Static.Data.csproj" />
+    <ProjectReference Include="..\Bomholt.PetShop.Infrastructure.DB.Data\Bomholt.PetShop.Infrastructure.DB.Data.csproj" />
   </ItemGroup>
 
 </Project>

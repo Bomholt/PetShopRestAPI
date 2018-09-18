@@ -1,7 +1,5 @@
 ﻿using Bomholt.PetShop.Core.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Bomholt.PetShop.Core.DomainService
 {
@@ -10,7 +8,7 @@ namespace Bomholt.PetShop.Core.DomainService
         IEnumerable<Owner> GetAll();
         Owner GetById(int n);
         bool DeleteById(int v);
-        bool CreateNew(Owner newOwner);
+        Owner CreateNew(Owner newOwner);
         bool Update(Owner updatedOwner);
     }
 }

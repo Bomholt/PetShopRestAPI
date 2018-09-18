@@ -18,7 +18,7 @@ namespace Bomholt.PetShop.Core.ApplicationService.Services
             _petRepo = petRepository;
         }
 
-        public bool CreateNew(Owner newOwner)
+        public Owner CreateNew(Owner newOwner)
         {
             return _ownerRepo.CreateNew(newOwner);
         }

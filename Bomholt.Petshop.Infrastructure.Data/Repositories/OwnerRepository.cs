@@ -85,5 +85,10 @@ namespace Bomholt.Petshop.Infrastructure.Data.Repositories
             }
             return false;
         }
+
+        Owner IOwnerRepository.CreateNew(Owner newOwner)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
