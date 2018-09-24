@@ -10,7 +10,7 @@ namespace Bomholt.PetShop.Core.DomainService
     {
         IEnumerable<Pet> GetAllPets();
         Pet GetById(int v);
-        bool DeletePetById(int v);
+        Pet DeletePetById(int v);
         bool CreateNewPet(Pet newPet);
         bool UpdatePet(Pet updatedPet);
     }

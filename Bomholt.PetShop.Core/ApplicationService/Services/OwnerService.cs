@@ -10,12 +10,10 @@ namespace Bomholt.PetShop.Core.ApplicationService.Services
     public class OwnerService : IOwnerService
     {
         private IOwnerRepository _ownerRepo;
-        private IPetRepository _petRepo;
 
-        public OwnerService(IOwnerRepository ownerRepo, IPetRepository petRepository)
+        public OwnerService(IOwnerRepository ownerRepo)
         {
             _ownerRepo = ownerRepo;
-            _petRepo = petRepository;
         }
 
         public Owner CreateNew(Owner newOwner)
@@ -40,12 +38,7 @@ namespace Bomholt.PetShop.Core.ApplicationService.Services
 
         public Owner GetByIdWithPets(int id)
         {
-            Owner owner = _ownerRepo.GetById(id);
-            owner.Pets = _petRepo.GetAllPets().Where(pet => pet.Owner.ID == owner.ID).ToList();
-            //customer.Orders = _orderRepo.ReadAll()
-            //    .Where(order => order.Customer.Id == customer.Id)
-            //    .ToList();
-            return owner;
+            return _ownerRepo.GetByIdWithPets(id);
         }
 
         public bool Update(Owner updatedOwner)

@@ -1,5 +1,6 @@
 ﻿using Bomholt.PetShop.Core.DomainService;
 using Bomholt.PetShop.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,11 @@ namespace Bomholt.PetShop.Infrastructure.DB.Data.Repositories
         public Owner GetById(int n)
         {
             return _context.Owners.FirstOrDefault(o => o.ID == n);
+        }
+
+        public Owner GetByIdWithPets(int id)
+        {
+            return _context.Owners.Where(c => c.ID == id).Include(c => c.Pets).FirstOrDefault();
         }
 
         public bool Update(Owner updatedOwner)

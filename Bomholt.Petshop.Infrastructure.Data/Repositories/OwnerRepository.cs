@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Bomholt.Petshop.Infrastructure.Data.Repositories
 {
-    public class OwnerRepository : IOwnerRepository
+    public class OwnerRepository // : IOwnerRepository
     {
         public OwnerRepository()
         {
@@ -85,8 +85,8 @@ namespace Bomholt.Petshop.Infrastructure.Data.Repositories
             }
             return false;
         }
-
-        Owner IOwnerRepository.CreateNew(Owner newOwner)
+        
+        public Owner GetByIdWithPets(int id)
         {
             throw new NotImplementedException();
         }

@@ -82,8 +82,8 @@ namespace Bomholt.PetShop.RestAPI.Controllers
             {
                 return BadRequest("Id must be lager than zero!");
             }
-            bool success = _petService.DeletePetById(id);
-            if (success)
+            Pet success = _petService.DeletePetById(id);
+            if (success != null)
             {
                 return Ok($"Pet nr. {id} was deleted");
             }

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Bomholt.Petshop.Infrastructure.Data.Repositories
 {
-    public class PetRepository : IPetRepository
+    public class PetRepository // : IPetRepository
 
     {
         private static int id = 1;

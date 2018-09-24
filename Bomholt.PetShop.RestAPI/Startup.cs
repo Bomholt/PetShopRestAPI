@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Bomholt.PetShop.RestAPI
 {
@@ -31,6 +32,10 @@ namespace Bomholt.PetShop.RestAPI
             services.AddScoped<IPetService, PetService>();
             services.AddScoped<IOwnerRepository, OwnerRepository>();
             services.AddScoped<IOwnerService, OwnerService>();
+
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,11 +45,11 @@ namespace Bomholt.PetShop.RestAPI
             {
                 app.UseDeveloperExceptionPage();
                 // Initialize the database
-                //using (var scope = app.ApplicationServices.CreateScope())
-                //{
-                //    var dbContext = scope.ServiceProvider.GetService<PetShopContext>();
-                //    dbContext.Database.EnsureCreated();
-                //}
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var dbContext = scope.ServiceProvider.GetService<PetShopContext>();
+                    dbContext.Database.EnsureCreated();
+                }
             }
 
             app.UseMvc();
