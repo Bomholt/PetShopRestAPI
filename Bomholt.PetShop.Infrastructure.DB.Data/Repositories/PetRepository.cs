@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Bomholt.PetShop.Infrastructure.DB.Data.Repositories
 {
@@ -17,17 +16,17 @@ namespace Bomholt.PetShop.Infrastructure.DB.Data.Repositories
             _context = context;
         }
 
-        public bool CreateNewPet(Pet newPet)
+        public Pet CreateNewPet(Pet newPet)
         {
-            newPet.Owner = _context.Owners.FirstOrDefault(o => o.ID == newPet.Owner.ID);
+            newPet.Owner = _context.Owners.FirstOrDefault(o => o.Id == newPet.Owner.Id);
             Pet pt = _context.Add(newPet).Entity;
             _context.SaveChanges();
-            return true;
+            return pt;
         }
 
         public Pet DeletePetById(int v)
         {
-            var petDeleted = _context.Remove<Pet>(new Pet {ID = v}).Entity;
+            var petDeleted = _context.Remove(new Pet {Id = v}).Entity;
             _context.SaveChanges();
             return petDeleted;
         }
@@ -39,10 +38,10 @@ namespace Bomholt.PetShop.Infrastructure.DB.Data.Repositories
 
         public Pet GetById(int v)
         {
-            return _context.Pets.Include(p => p.Owner).FirstOrDefault(p => p.ID == v);
+            return _context.Pets.Include(p => p.Owner).FirstOrDefault(p => p.Id == v);
         }
 
-        public bool UpdatePet(Pet updatedPet)
+        public Pet UpdatePet(Pet updatedPet)
         {
             throw new NotImplementedException();
         }

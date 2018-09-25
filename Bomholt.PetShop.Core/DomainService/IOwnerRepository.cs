@@ -7,9 +7,9 @@ namespace Bomholt.PetShop.Core.DomainService
     {
         IEnumerable<Owner> GetAll();
         Owner GetById(int n);
-        bool DeleteById(int v);
+        Owner DeleteById(int v);
         Owner CreateNew(Owner newOwner);
-        bool Update(Owner updatedOwner);
+        Owner Update(Owner updatedOwner);
         Owner GetByIdWithPets(int id);
     }
 }

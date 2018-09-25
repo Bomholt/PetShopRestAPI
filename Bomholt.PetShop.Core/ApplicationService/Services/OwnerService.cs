@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Bomholt.PetShop.Core.DomainService;
 using Bomholt.PetShop.Core.Entities;
 
@@ -9,7 +7,7 @@ namespace Bomholt.PetShop.Core.ApplicationService.Services
 {
     public class OwnerService : IOwnerService
     {
-        private IOwnerRepository _ownerRepo;
+        private readonly IOwnerRepository _ownerRepo;
 
         public OwnerService(IOwnerRepository ownerRepo)
         {
@@ -21,7 +19,7 @@ namespace Bomholt.PetShop.Core.ApplicationService.Services
             return _ownerRepo.CreateNew(newOwner);
         }
 
-        public bool DeleteById(int v)
+        public Owner DeleteById(int v)
         {
             return _ownerRepo.DeleteById(v);
         }
@@ -41,7 +39,7 @@ namespace Bomholt.PetShop.Core.ApplicationService.Services
             return _ownerRepo.GetByIdWithPets(id);
         }
 
-        public bool Update(Owner updatedOwner)
+        public Owner Update(Owner updatedOwner)
         {
             return _ownerRepo.Update(updatedOwner);
         }

@@ -18,14 +18,16 @@ namespace Bomholt.PetShop.Infrastructure.DB.Data.Repositories
 
         public Owner CreateNew(Owner newOwner)
         {
-            Owner Ow = _context.Owners.Add(newOwner).Entity;
+            Owner ow = _context.Owners.Add(newOwner).Entity;
             _context.SaveChanges();
-            return Ow;
+            return ow;
         }
 
-        public bool DeleteById(int v)
+        public Owner DeleteById(int v)
         {
-            throw new NotImplementedException();
+            var ownerDeleted = _context.Remove(new Owner() { Id = v }).Entity;
+            _context.SaveChanges();
+            return ownerDeleted;
         }
 
         public IEnumerable<Owner> GetAll()
@@ -35,15 +37,15 @@ namespace Bomholt.PetShop.Infrastructure.DB.Data.Repositories
 
         public Owner GetById(int n)
         {
-            return _context.Owners.FirstOrDefault(o => o.ID == n);
+            return _context.Owners.FirstOrDefault(o => o.Id == n);
         }
 
         public Owner GetByIdWithPets(int id)
         {
-            return _context.Owners.Where(c => c.ID == id).Include(c => c.Pets).FirstOrDefault();
+            return _context.Owners.Where(c => c.Id == id).Include(c => c.Pets).FirstOrDefault();
         }
 
-        public bool Update(Owner updatedOwner)
+        public Owner Update(Owner updatedOwner)
         {
             throw new NotImplementedException();
         }

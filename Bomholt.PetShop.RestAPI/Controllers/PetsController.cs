@@ -31,22 +31,22 @@ namespace Bomholt.PetShop.RestAPI.Controllers
                 return BadRequest("Id must be lager than zero!");
             }
             //Pet PetFound = _petService.GetById(id);
-            Pet PetFound = _petService.GetById(id);
-            if (PetFound == null)
+            Pet petFound = _petService.GetById(id);
+            if (petFound == null)
             {
                 return NotFound($"No pet with id {id} found!");
             }
-            return Ok(PetFound);
+            return Ok(petFound);
         }
 
         // POST api/pets
         [HttpPost]
         public ActionResult Post([FromBody]Pet value)
         {
-            bool success = _petService.CreateNewPet(value);
-            if (success)
+            Pet success = _petService.CreateNewPet(value);
+            if (success != null)
             {
-                return Ok($"Pet {value} was created");
+                return Ok($"Pet {success} was created");
             }
             else
             {
@@ -58,13 +58,13 @@ namespace Bomholt.PetShop.RestAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody]Pet value)
         {
-            value.ID = id;
+            value.Id = id;
             if (id < 1)
             {
                 return BadRequest("Id must be lager than zero!");
             }
-            bool success = _petService.UpdatePet(value);
-            if (success)
+            var success = _petService.UpdatePet(value);
+            if (success != null)
             {
                 return Ok($"Pet nr. {id} was updated");
             }

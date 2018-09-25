@@ -7,54 +7,54 @@ namespace Bomholt.PetShop.Core.ApplicationService.Services
 {
     public class PetService : IPetService
     {
-        private IPetRepository _PetRepo;
+        private readonly IPetRepository _petRepo;
 
-        public PetService(IPetRepository PetRepo)
+        public PetService(IPetRepository petRepo)
         {
-            _PetRepo = PetRepo;
+            _petRepo = petRepo;
         }
-
-        public bool CreateNewPet(Pet newPet)
+        
+        public Pet CreateNewPet(Pet newPet)
         {
-           return _PetRepo.CreateNewPet(newPet);
+           return _petRepo.CreateNewPet(newPet);
         }
 
         public Pet DeletePetById(int v)
         {
-            return _PetRepo.DeletePetById(v);
+            return _petRepo.DeletePetById(v);
         }
 
         public List<Pet> Get5CheapestPets()
         {
-            IEnumerable<Pet> AllPets = _PetRepo.GetAllPets();
-            return AllPets.OrderBy(pet => pet.Price).Take(5).ToList();
+            IEnumerable<Pet> allPets = _petRepo.GetAllPets();
+            return allPets.OrderBy(pet => pet.Price).Take(5).ToList();
         }
 
         public List<Pet> GetAllPets()
         {
-            return _PetRepo.GetAllPets().ToList();
+            return _petRepo.GetAllPets().ToList();
         }
 
         public Pet GetById(int v)
         {
-            return _PetRepo.GetById(v);
+            return _petRepo.GetById(v);
         }
 
         public List<Pet> SearchPetsByType(string searchType)
         {
-            IEnumerable <Pet> AllPets = _PetRepo.GetAllPets();
-            return AllPets.Where(pet => pet.Type.Equals(searchType)).ToList();
+            IEnumerable <Pet> allPets = _petRepo.GetAllPets();
+            return allPets.Where(pet => pet.Type.Equals(searchType)).ToList();
         }
 
         public List<Pet> SortPetsByPrice()
         {
-            IEnumerable<Pet> AllPets = _PetRepo.GetAllPets();
-            return AllPets.OrderBy(pet => pet.Price).ToList();
+            IEnumerable<Pet> allPets = _petRepo.GetAllPets();
+            return allPets.OrderBy(pet => pet.Price).ToList();
         }
 
-        public bool UpdatePet(Pet updatedPet)
+        public Pet UpdatePet(Pet updatedPet)
         {
-            return _PetRepo.UpdatePet(updatedPet);
+            return _petRepo.UpdatePet(updatedPet);
         }
     }
 }

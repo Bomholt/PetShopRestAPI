@@ -9,7 +9,7 @@ namespace Bomholt.PetShop.RestAPI.Controllers
     [Route("api/Owners")]
     public class OwnersController : Controller
     {
-        private IOwnerService _ownerService;
+        private readonly IOwnerService _ownerService;
 
         public OwnersController(IOwnerService ownerService)
         {
@@ -32,12 +32,12 @@ namespace Bomholt.PetShop.RestAPI.Controllers
                 return BadRequest("Id must be larger than zero!");
             }
             //Owner OwnerFound = _ownerService.GetById(id);
-            Owner OwnerFound = _ownerService.GetByIdWithPets(id);
-            if (OwnerFound == null)
+            Owner ownerFound = _ownerService.GetByIdWithPets(id);
+            if (ownerFound == null)
             {
                 return NotFound($"No owner with id {id} found!");
             }
-            return Ok(OwnerFound);
+            return Ok(ownerFound);
         }
         
         // POST: api/Owners
@@ -59,13 +59,13 @@ namespace Bomholt.PetShop.RestAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody]Owner value)
         {
-            value.ID = id;
+            value.Id = id;
             if (id < 1)
             {
                 return BadRequest("Id must be lager than zero!");
             }
-            bool success = _ownerService.Update(value);
-            if (success)
+            var success = _ownerService.Update(value);
+            if (success != null)
             {
                 return Ok($"Owner nr. {id} was updated");
             }
@@ -83,8 +83,8 @@ namespace Bomholt.PetShop.RestAPI.Controllers
             {
                 return BadRequest("Id must be lager than zero!");
             }
-            bool success = _ownerService.DeleteById(id);
-            if (success)
+            Owner success = _ownerService.DeleteById(id);
+            if (success != null)
             {
                 return Ok("Owner nr. {id} was deleted");
             }

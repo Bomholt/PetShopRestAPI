@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Bomholt.Petshop.Infrastructure.Data
 {
-    public static class FakeDB
+    public static class FakeDb
     {
-        public static int Owner_id = 0;
+        public static int OwnerId = 0;
         public static List<Owner> Owners = new List<Owner>();
     }
 }

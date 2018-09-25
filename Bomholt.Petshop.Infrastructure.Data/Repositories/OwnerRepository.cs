@@ -11,25 +11,25 @@ namespace Bomholt.Petshop.Infrastructure.Data.Repositories
     {
         public OwnerRepository()
         {
-            if (FakeDB.Owners.Count < 1)
+            if (FakeDb.Owners.Count < 1)
             {
-                InitDB();
+                InitDb();
             }
         }
 
-        private void InitDB()
+        private void InitDb()
         {
-            FakeDB.Owners.Add(new Owner()
+            FakeDb.Owners.Add(new Owner()
             {
-                ID = ++FakeDB.Owner_id,
+                Id = ++FakeDb.OwnerId,
                 Name = "Lars Larsen",
                 Address = "Tilbuds Gade 12",
                 Email = "jegharetgodttilbudtildig@jydemail.dk"
                 //Pets = {1,2} 
             });
-            FakeDB.Owners.Add(new Owner()
+            FakeDb.Owners.Add(new Owner()
             {
-                ID = ++FakeDB.Owner_id,
+                Id = ++FakeDb.OwnerId,
                 Name = "Jens Jensen",
                 Address = "Titgens Gade 23",
                 Email = "jjjensen@snydemail.dk"
@@ -39,17 +39,17 @@ namespace Bomholt.Petshop.Infrastructure.Data.Repositories
 
         public bool CreateNew(Owner newOwner)
         {
-            newOwner.ID = ++FakeDB.Owner_id;
-            FakeDB.Owners.Add(newOwner);
+            newOwner.Id = ++FakeDb.OwnerId;
+            FakeDb.Owners.Add(newOwner);
             return true;
         }
 
         public bool DeleteById(int v)
         {
-            var DelOwner = GetById(v);
-            if (DelOwner != null)
+            var delOwner = GetById(v);
+            if (delOwner != null)
             {
-                FakeDB.Owners.Remove(DelOwner);
+                FakeDb.Owners.Remove(delOwner);
                 return true;
             }
             return false;
@@ -57,14 +57,14 @@ namespace Bomholt.Petshop.Infrastructure.Data.Repositories
 
         public IEnumerable<Owner> GetAll()
         {
-            return FakeDB.Owners;
+            return FakeDb.Owners;
         }
 
         public Owner GetById(int n)
         {
-            foreach (var item in FakeDB.Owners)
+            foreach (var item in FakeDb.Owners)
             {
-                if (item.ID == n)
+                if (item.Id == n)
                 {
                     return item;
                 }
@@ -74,13 +74,13 @@ namespace Bomholt.Petshop.Infrastructure.Data.Repositories
 
         public bool Update(Owner updatedOwner)
         {
-            var UpOwner = GetById(updatedOwner.ID);
-            if (UpOwner != null)
+            var upOwner = GetById(updatedOwner.Id);
+            if (upOwner != null)
             {
-                UpOwner.Name = updatedOwner.Name;
-                UpOwner.Address = updatedOwner.Address;
-                UpOwner.Email = updatedOwner.Email;
-                UpOwner.Pets = updatedOwner.Pets;
+                upOwner.Name = updatedOwner.Name;
+                upOwner.Address = updatedOwner.Address;
+                upOwner.Email = updatedOwner.Email;
+                upOwner.Pets = updatedOwner.Pets;
                 return true;
             }
             return false;
