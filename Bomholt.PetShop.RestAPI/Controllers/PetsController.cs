@@ -8,7 +8,7 @@ namespace Bomholt.PetShop.RestAPI.Controllers
     [Route("api/[controller]")]
     public class PetsController : Controller
     {
-        private IPetService _petService;
+        private readonly IPetService _petService;
 
         public PetsController(IPetService petService)
         {

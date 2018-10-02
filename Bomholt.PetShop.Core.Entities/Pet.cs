@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Bomholt.PetShop.Core.Entities
 {
@@ -11,9 +10,9 @@ namespace Bomholt.PetShop.Core.Entities
         public string Type { get; set; }
         public DateTime Birthdate { get; set; }
         public DateTime Solddate { get; set; }
-        public string Color { get; set; }
         public string PreviousOwner { get; set; }
         public double Price { get; set; }
         public Owner Owner { get; set; }
+        public IList <PetColor> PetColors { get; set; }
     }
 }

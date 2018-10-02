@@ -1,5 +1,4 @@
-﻿using Bomholt.PetShop.Core.DomainService;
-using Bomholt.PetShop.Core.Entities;
+﻿using Bomholt.PetShop.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +14,10 @@ namespace Bomholt.Petshop.Infrastructure.Data.Repositories
         public static void InitDb()
         {
             var temp = Pets.ToList();
-            temp.Add(new Pet() { Owner = new Owner() { Id = 1 }, Name = "Iben", Type = "Cat", Color = "Black", Birthdate = new DateTime(2011, 05, 15), PreviousOwner = "Hans Hansen", Price = 100, Id = _id++ });
-            temp.Add(new Pet() { Owner = new Owner() { Id = 1 }, Name = "Lars", Type = "Pecker", Color = "Pink", Birthdate = new DateTime(2017, 11, 22), PreviousOwner = "Birthe Hansen", Price = 1000, Id = _id++ });
-            temp.Add(new Pet() { Owner = new Owner() { Id = 2 }, Name = "Ralf", Type = "Gyraf", Color = "White", Birthdate = new DateTime(2015, 01, 09), PreviousOwner = "Hans Ipsen", Price = 150.5, Id = _id++ });
-            temp.Add(new Pet() { Owner = new Owner() { Id = 2 }, Name = "Garfield", Type = "Dolphin", Color = "Orange", Birthdate = new DateTime(2018, 09, 05), PreviousOwner = "Jens Jensen", Price = 1559.95, Id = _id++ });
+            temp.Add(new Pet() { Owner = new Owner() { Id = 1 }, Name = "Iben", Type = "Cat", Birthdate = new DateTime(2011, 05, 15), PreviousOwner = "Hans Hansen", Price = 100, Id = _id++ });
+            temp.Add(new Pet() { Owner = new Owner() { Id = 1 }, Name = "Lars", Type = "Pecker", Birthdate = new DateTime(2017, 11, 22), PreviousOwner = "Birthe Hansen", Price = 1000, Id = _id++ });
+            temp.Add(new Pet() { Owner = new Owner() { Id = 2 }, Name = "Ralf", Type = "Gyraf", Birthdate = new DateTime(2015, 01, 09), PreviousOwner = "Hans Ipsen", Price = 150.5, Id = _id++ });
+            temp.Add(new Pet() { Owner = new Owner() { Id = 2 }, Name = "Garfield", Type = "Dolphin", Birthdate = new DateTime(2018, 09, 05), PreviousOwner = "Jens Jensen", Price = 1559.95, Id = _id++ });
             Pets = temp;
         }
 
@@ -77,7 +76,6 @@ namespace Bomholt.Petshop.Infrastructure.Data.Repositories
             }
             petUpdate.Name = updatedPet.Name;
             petUpdate.Type = updatedPet.Type;
-            petUpdate.Color = updatedPet.Color;
             petUpdate.PreviousOwner = updatedPet.PreviousOwner;
             petUpdate.Birthdate = updatedPet.Birthdate;
             petUpdate.Solddate = updatedPet.Solddate;

@@ -1,19 +1,27 @@
-﻿using Bomholt.PetShop.Core.DomainService;
-using Bomholt.PetShop.Core.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="PetRepository.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Defines the PetRepository type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Bomholt.PetShop.Infrastructure.DB.Data.Repositories
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Bomholt.PetShop.Core.DomainService;
+    using Bomholt.PetShop.Core.Entities;
+    using Microsoft.EntityFrameworkCore;
+
     public class PetRepository : IPetRepository
     {
         private readonly PetShopContext _context;
 
         public PetRepository(PetShopContext context)
         {
-            _context = context;
+            this._context = context;
         }
 
         public Pet CreateNewPet(Pet newPet)
@@ -43,7 +51,10 @@ namespace Bomholt.PetShop.Infrastructure.DB.Data.Repositories
 
         public Pet UpdatePet(Pet updatedPet)
         {
-            throw new NotImplementedException();
+            updatedPet.Owner = _context.Owners.FirstOrDefault(o => o.Id == updatedPet.Owner.Id);
+            Pet pt = _context.Update(updatedPet).Entity;
+            _context.SaveChanges();
+            return pt;
         }
     }
 }

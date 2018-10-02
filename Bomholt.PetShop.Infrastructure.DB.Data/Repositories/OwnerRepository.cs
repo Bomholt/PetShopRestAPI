@@ -25,7 +25,7 @@ namespace Bomholt.PetShop.Infrastructure.DB.Data.Repositories
 
         public Owner DeleteById(int v)
         {
-            var ownerDeleted = _context.Remove(new Owner() { Id = v }).Entity;
+            var ownerDeleted = _context.Remove(new Owner { Id = v }).Entity;
             _context.SaveChanges();
             return ownerDeleted;
         }
@@ -47,7 +47,9 @@ namespace Bomholt.PetShop.Infrastructure.DB.Data.Repositories
 
         public Owner Update(Owner updatedOwner)
         {
-            throw new NotImplementedException();
+            Owner ow = _context.Update(updatedOwner).Entity;
+            _context.SaveChanges();
+            return ow;
         }
     }
 }
