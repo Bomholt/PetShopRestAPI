@@ -13,6 +13,6 @@ namespace Bomholt.PetShop.Core.Entities
         public string PreviousOwner { get; set; }
         public double Price { get; set; }
         public Owner Owner { get; set; }
-        public IList <PetColor> PetColors { get; set; }
+        //public IList <PetColor> PetColors { get; set; }
     }
 }

@@ -22,7 +22,9 @@ namespace Bomholt.PetShop.Infrastructure.DB.Data
 
         public DbSet<Owner> Owners { get; set; }
 
-        public DbSet<PetColor> PetColors { get; set; }
+        //public DbSet<PetColor> PetColors { get; set; }
+
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,15 +32,15 @@ namespace Bomholt.PetShop.Infrastructure.DB.Data
                 .HasMany(o => o.Pets)
                 .WithOne(p => p.Owner).OnDelete(DeleteBehavior.SetNull);
 
-            modelBuilder.Entity<PetColor>().HasKey(pc => new { pc.PetId, pc.ColorId });
+            //modelBuilder.Entity<PetColor>().HasKey(pc => new { pc.PetId, pc.ColorId });
 
-            modelBuilder.Entity<PetColor>()
-                .HasOne<Pet>(pc => pc.Pet)
-                .WithMany(p => p.PetColors).HasForeignKey(pc => pc.PetId);
+            //modelBuilder.Entity<PetColor>()
+            //    .HasOne<Pet>(pc => pc.Pet)
+            //    .WithMany(p => p.PetColors).HasForeignKey(pc => pc.PetId);
 
-            modelBuilder.Entity<PetColor>()
-                .HasOne<Color>(pc => pc.Color)
-                .WithMany(c => c.PetColor).HasForeignKey(pc => pc.ColorId);
+            //modelBuilder.Entity<PetColor>()
+            //    .HasOne<Color>(pc => pc.Color)
+            //    .WithMany(c => c.PetColor).HasForeignKey(pc => pc.ColorId);
 
             /*
             modelBuilder.Entity<StudentCourse>()
